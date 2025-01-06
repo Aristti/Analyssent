@@ -1,0 +1,5 @@
+text,sentiment,emotion,emotion_score
+I love you,positive,joy,0.97
+My bad! Where is my bag?,negative,disgust,0.65
+I'm sad,negative,sadness,0.98
+You hate me,negative,anger,0.81

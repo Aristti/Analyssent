@@ -1,0 +1,489 @@
+/* Styles globaux */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url('/static/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(216, 222, 234, 0.525);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Titre */
+/* Style général du titre */
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #5345e9; /* Couleur fixe */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: moveAnimation 2s ease-in-out infinite;
+    display: inline-block;
+}
+
+/* Animation de translation horizontale */
+@keyframes moveAnimation {
+    0% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    color: #080234;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    text-align: center;
+    font-weight: bold;
+    color: #f4f41a;
+}
+
+/* Zone de saisie */
+#text-input {
+    width: 100%;
+    height: 50px;
+    min-height: 100px;
+    font-size: 16px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    resize: none;
+}
+
+/* Boutons */
+button {
+    box-shadow: 0 0 5px cyan;
+    background-color: #6a63ff;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin: 10px 5px 0 0;
+}
+
+button:hover {
+    box-shadow: 0 0 5px cyan,
+    0 0 25px cyan,0 0 5px cyan,
+    0 0 100px cyan,0 0 50px cyan;
+    background-color: #5a54d8;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Résultats */
+#result-section {
+    margin-top: 20px;
+    display: none;
+}
+
+#emotion-result, 
+#sentiment-result {
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Conteneur pour aligner emoji, sentiment et émotion sur la même ligne */
+#emoji-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Conteneurs pour sentiment et émotion dans des cadres */
+.results-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.results-container div {
+    padding: 20px;
+    border: 2px solid #ccc;  /* Bordure autour des éléments */
+    border-radius: 10px;  /* Bords arrondis */
+    background-color: #f9f9f9;  /* Fond légèrement gris */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Ombre légère pour les cadres */
+    max-width: 200px;  /* Limiter la largeur pour un meilleur alignement */
+    text-align: center;
+}
+
+/* Style pour l'emoji dans un cadre */
+#emoji {
+    display: block;
+    margin: 20px auto;
+    max-width: 80px;
+    max-height: 80px;
+    animation: fadeIn 1s ease-in-out;
+    border-radius: 50%;  /* Donner une forme circulaire à l'emoji */
+    border: 2px solid #ccc;  /* Bordure de l'emoji */
+    padding: 5px;  /* Espacement autour de l'emoji */
+}
+
+/* Conteneur du sentiment avec cadre */
+#sentiment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color:rgb(110, 243, 70)236, 37);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 200px;
+}
+
+/* Conteneur de l'émotion avec cadre */
+#emotion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: cyan;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 200px;
+}
+
+/* Style du wordcloud */
+.wordcloud-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Conteneur pour la vidéo et les instructions */
+.video-instructions-container {
+    display: flex;
+    justify-content: space-between; /* Sépare la vidéo et les instructions */
+    align-items: center; /* Centre verticalement les éléments */
+    gap: 20px; /* Espace entre la vidéo et les instructions */
+    margin-top: 20px;
+}
+
+/* Style pour la vidéo */
+.video-section video {
+    width: 100%; /* Réduit la largeur de la vidéo */
+    max-width: 600px; /* Limite la largeur maximale de la vidéo */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Style pour les instructions */
+.instructions {
+    width: 45%; /* Définir une largeur pour les instructions */
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000000;
+}
+
+/* Style pour les titres des sections d'analyse */
+.analysis-title {
+    font-size: 1.5rem; /* Taille de police pour les titres */
+    font-weight: bold;
+    color: #2335fd; /* Couleur sombre pour un bon contraste */
+    text-align: left; /* Centré */
+    margin-top: 30px; /* Espace au-dessus du titre */
+    margin-bottom: 20px; /* Espace sous le titre */
+    letter-spacing: 1px; /* Espacement entre les lettres */
+}
+
+/* Style pour la séparation entre les sections */
+.section-separator {
+    border: none;
+    border-top: 2px solid #f5f10c; /* Ligne horizontale de séparation */
+    margin: 30px 0; /* Espacement autour de la ligne */
+    width: 80%; /* Largeur de la ligne */
+    margin-left: auto;
+    margin-right: auto; /* Centrer la ligne */
+}
+/* Tableau des résultats */
+#results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#results-table th, 
+#results-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#results-table th {
+    background-color: #6a63ff;
+    color: #fff;
+}
+
+#results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#results-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Bouton de téléchargement */
+#download-button {
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+#download-button:hover {
+    background-color: #218838;
+}
+
+/* Chargement */
+/* Style général du loader */
+.loading {
+    display: none; /* Caché par défaut, visible pendant le chargement */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3; /* Couleur du fond du spinner */
+    border-top: 4px solid #3498db; /* Couleur de l'animation initiale */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite, colorChange 3s linear infinite; /* Ajout de la seconde animation */
+}
+
+/* Animation de rotation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animation de changement de couleur */
+@keyframes colorChange {
+    0% { border-top-color: #3498db; } /* Bleu initial */
+    25% { border-top-color: #e74c3c; } /* Rouge */
+    50% { border-top-color: #f39c12; } /* Jaune */
+    75% { border-top-color: #2ecc71; } /* Vert */
+    100% { border-top-color: #3498db; } /* Retour au bleu */
+}
+
+.loading p {
+    font-size: 16px;
+    color: #3498db;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    #text-input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
+
+#csv-results {
+    display: block ; 
+    
+}
+
+#csv-results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#csv-results-table th, 
+#csv-results-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#csv-results-table th {
+    background-color: #6a63ff;
+    color: #fff;
+}
+
+#csv-results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#csv-results-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+#charts-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Dashboard Styles */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.dashboard-item {
+    background: rgba(247, 245, 234, 0.596);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dashboard-item h3 {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.dashboard-item canvas {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.dashboard-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.dashboard-item ul li {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* Footer */
+/* Styles généraux du footer */
+/* Styles généraux du footer */
+footer {
+    background: linear-gradient(45deg, #4caf50, #81c784); /* Dégradé */
+    color: white;
+    padding: 20px 0;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Contenu du footer */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Colonne gauche */
+.footer-left {
+    flex: 1;
+}
+
+/* Colonne du centre */
+.footer-center {
+    flex: 1;
+}
+
+/* Colonne droite - liens sociaux */
+.footer-right {
+    flex: 1;
+    text-align: right;
+}
+
+/* Liens sociaux */
+.social-icon {
+    text-decoration: none;
+    color: rgb(222, 247, 4);
+    font-size: 30px;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+/* Effet au survol des icônes */
+.social-icon:hover {
+    color: #0077b5; /* Couleur LinkedIn au survol */
+}
+
+/* Couleur spécifique pour l'icône Mail */
+.social-icon.mail:hover {
+    color: #f39c12; /* Couleur Mail au survol */
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment and Emotion Analyzer</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <!-- Inclusion de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js -->
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🌟 Sentiment and Emotion Analyzer 🌟</h1>
+            <p class="subtitle">Analyze your text for sentiment and emotions with our app!</p>
+        </header>
+        <div class="video-instructions-container">
+            <div class="video-section">
+                <video autoplay muted loop>
+                    <source src="/static/tutorial.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <!-- Instructions Section -->
+            <div class="instructions">
+                <p>
+                    1. Enter your text in the box below or upload a CSV file.<br>
+                    2. Click on the "Analyze" button to process your text.<br>
+                    3. View the results, including sentiment, emotion, and a word cloud for the simple text analysis.<br>
+                    4. Use the emoji and audio cues to understand the mood of your text.<br>
+                    5.View the dashboard for the csv analysis.<br>
+                </p>
+            </div>
+        </div>
+
+        <!-- Séparation entre les sections -->
+        <hr class="section-separator">
+
+        <!-- Input Section -->
+        <div id="text-analysis-section">
+            <h2 class="analysis-title">🔍 Text Analysis</h2> <!-- Titre pour l'analyse de texte -->
+            <div class="input-section">
+                <textarea id="text-input" placeholder="Enter your text here..." rows="5"></textarea>
+                <button id="analyze-button">Analyze Text</button>
+            </div>
+        </div>
+
+        <!-- Séparation entre les sections -->
+        <hr class="section-separator">
+
+        <div id="csv-analysis-section">
+            <h2 class="analysis-title">🔄 CSV File Analysis</h2> <!-- Titre pour l'analyse de CSV -->
+            <div class="input-section">
+                <p>Or upload a CSV file with messages to analyze:</p>
+                <input type="file" id="input_csv" accept=".csv">
+                <button id="analyze-csv-button">Analyze CSV</button>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button id="back-button" style="display: none;">🔄 Retour</button>
+        </div>
+
+        <!-- Loading Section -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyzing your text, please wait...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="result-section" style="display: none;">
+            <div id="emoji-container">
+                <img id="emoji" alt="Emoji" style="display: none;">
+            </div>
+            
+            <div class="results-container">
+                <!-- Conteneur pour le sentiment -->
+                <div id="sentiment-container">
+                    <p id="sentiment-result" class="result-text"></p>
+                </div>
+        
+                <!-- Conteneur pour l'émotion -->
+                <div id="emotion-container">
+                    <p id="emotion-result" class="result-text"></p>
+                </div>
+            </div>
+        
+            <!-- Word cloud section -->
+            <div class="wordcloud-section" style="margin-top: 20px;">
+                <img id="wordcloud" alt="Word Cloud">
+            </div>
+            <button onclick="window.print()">Print Results</button>
+
+        </div>
+
+        <!-- Section de chargement pour l'analyse CSV -->
+        <div id="loading-csv" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyzing CSV, please wait...</p>
+        </div>
+
+            <!-- CSV Results -->
+        <div id="csv-results" style="display: none;">
+            <h3>CSV Analysis Results</h3>
+            <table id="csv-results-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Message</th>
+                        <th>Sentiment</th>
+                        <th>Emotion</th>
+                        <th>Emotion Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les résultats seront injectés ici -->
+                </tbody>
+            </table>
+            <div id="download-container" style="margin-top: 20px; text-align: center;"></div>
+            <button onclick="window.print()">Print Results</button>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="dashboard" style="display: none;">
+            <!-- Statistiques principales -->
+            <div class="dashboard-item">
+                <h3>📊 Résumé des résultats</h3>
+                <ul>
+                    <li>Total Messages: <span id="total-messages">0</span></li>
+                    <li>Positive Sentiments: <span id="positive-sentiment">0</span></li>
+                    <li>Negative Sentiments: <span id="negative-sentiment">0</span></li>
+                    <li>Neutral Sentiments: <span id="neutral-sentiment">0</span></li>
+                </ul>
+                <h4>Top Emotions:</h4>
+                <ul id="top-emotions"></ul>
+            </div>
+
+            <!-- Graphique des sentiments -->
+            <div class="dashboard-item">
+                <h3>📈 Sentiment Distribution</h3>
+                <canvas id="sentiment-chart"></canvas>
+            </div>
+
+            <!-- Graphique des émotions -->
+            <div class="dashboard-item">
+                <h3>📉 Emotion Distribution</h3>
+                <canvas id="emotion-chart"></canvas>
+            </div>
+        </div>
+    </div>
+        <!-- Video Section -->
+
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; 2025 Par AÏFA Aristidina et KPADONOU Térence</p>
+                </div>
+                <div class="footer-center">
+                    <p>Contactez-nous : aristidinaifa@gmail.com - kpadonouterence23@gmail.com</p>
+                </div>
+                <div class="footer-right">
+                    <!-- Lien vers votre profil LinkedIn -->
+                    <a href="https://www.linkedin.com/in/aristidina-a%C3%AFfa-1bab75287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <!-- Lien vers votre email -->
+                    <a href="aristidinaifa@gmail.com" class="social-icon">
+                    
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+        
+        
+    </div>
+    <script src="/static/scripts.js"></script>
+</body>
+</html>
